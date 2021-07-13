@@ -147,3 +147,36 @@ bp抓包改包重放，得到flag
 
 使用EditThisCookie查看，有一个名为admin的cookie值为0，修改为1，刷新得到flag
 
+#### 基础认证
+
+打开环境，有个获得flag的click按钮，点一下弹出窗口需要登陆验证，随便输一个`admin/123`，bp抓包
+
+<img src="web-wp/1.jpg" style="zoom:33%;" />
+
+头部有一个Authorization字段，后面的值解码发现是base64加密的`admin:123`
+
+<img src="web-wp/2.jpg" style="zoom:33%;" />
+
+在返回包里发现提示
+
+<img src="web-wp/3.jpg" style="zoom:33%;" />
+
+猜测用户名为admin
+
+下面就可以尝试爆破了，发送到Intruder模块，添加payload position
+
+<img src="web-wp/4.jpg" style="zoom:33%;" />
+
+选择模式，加载字典
+
+<img src="web-wp/5.jpg" style="zoom: 33%;" />
+
+添加前缀`admin:`，并对密码进行base64加密处理（同时取消勾选URL编码，不然你会看到 base64 之后的 `=` 会被转成 `%3d` ，你就算爆破到天荒地老也不会出来）
+
+<img src="web-wp/6.jpg" style="zoom:33%;" />
+
+最后在一个状态码为200的响应返回包中发现flag
+
+#### 响应包源代码
+
+饿饿. 打开环境查看源码 发现flag...我人傻了
