@@ -101,16 +101,16 @@ echo 'flag{**********}';
 
 ## web6
 打开场景一堆弹窗，关都关不完，查看网页源码，
-![](https://z3.ax1x.com/2021/04/13/cyMAh9.png)
+<img src="https://z3.ax1x.com/2021/04/13/cyMAh9.png" style="zoom:33%;" />
 ...发现写了一堆alert...绝了
 在最下面发现了注释掉的编码，
-![](https://z3.ax1x.com/2021/04/13/cyMunK.png)
+<img src="https://z3.ax1x.com/2021/04/13/cyMunK.png" style="zoom: 33%;" />
 查了一下是Unicode编码，通过工具Unicode转ASCII得到flag
 
 ## web7
 弹窗提示停止网页刷新可得到flag
 查看网页源代码，发现
-![](https://z3.ax1x.com/2021/04/20/cH8KiT.jpg)
+<img src="https://z3.ax1x.com/2021/04/20/cH8KiT.jpg" style="zoom: 50%;" />
 并且前面的图片命名为num.jpg，于是尝试刷新，发现图片num确实随着刷新改变，然后不断刷新，最后在一次刷新后圈圈的地方出现flag
 
 ## web8
@@ -134,4 +134,16 @@ HTTP/1.1 八种请求方式: GET,POST,HEAD,OPTIONS,PUT,DELETE,TRACE,CONNECT
 打开环境提示HTTP方法为GET，使用CTFHUB方法，我会给你flag
 
 bp抓包改包重放，得到flag
+
+#### 302跳转
+
+看了wp才做出来
+
+打开环境，点击got flag后没反应，f12查看新出现了一个302的index.php页面，使用curl工具`-v`参数输出通信的整个过程，得到flag
+
+#### cookie
+
+打开环境提示管理员才能得到flag
+
+使用EditThisCookie查看，有一个名为admin的cookie值为0，修改为1，刷新得到flag
 
