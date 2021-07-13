@@ -120,3 +120,18 @@ echo 'flag{**********}';
 ## web 10
 打开页面显示什么也没有？信个鬼
 根据描述头等舱，联想到消息头，BP抓包，在消息头中得到flag
+
+# ctfhub
+
+## web前置技能
+
+### HTTP协议
+
+#### 请求方式
+
+HTTP/1.1 八种请求方式: GET,POST,HEAD,OPTIONS,PUT,DELETE,TRACE,CONNECT
+
+打开环境提示HTTP方法为GET，使用CTFHUB方法，我会给你flag
+
+bp抓包改包重放，得到flag
+
