@@ -251,7 +251,7 @@ bp抓包改包重放，得到flag
 
 ##### 网站源码
 
-试了一下`www.zip`，直接一发入魂
+试了一下`www.zip`   一发入魂
 
 下载到本地解压发现一个`flag_46657223.txt`文件，但打开没有flag
 
@@ -265,4 +265,15 @@ bp抓包改包重放，得到flag
 
 > 原理同**ctfshow/web入门/信息搜集/web9**
 
-但本题需在URL尾部添加`/.index.php.swp`  奇了个怪
+但本题需在URL尾部添加`/.index.php.swp`  （奇了个怪
+
+##### .DS_Store
+
+> `.DS_Store` 是 Mac OS 保存文件夹的自定义属性的隐藏文件，通过`.DS_Store`可以知道这个目录里面所有文件的清单
+
+在URL尾部添加`/.DS_Store`下载到本地打开为乱码，得不到有效信息，使用[github](https://github.com/gehaxelt/Python-dsstore)上的一个工具对DS_Store文件进行解析
+
+<img src="CTF靶场wp/9.jpg" style="zoom: 50%;" />
+
+得到一个文件名，在URL尾部添加后读取到flag
+
