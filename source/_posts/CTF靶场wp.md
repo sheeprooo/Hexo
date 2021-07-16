@@ -1,10 +1,10 @@
 ---
-title: Web-wp
+title: CTF靶场wp
 date: 2021-04-16 12:48:41
 categories: "CTF"
 tags: "CTF"
 ---
-歪脖的达不溜屁
+达不溜屁
 <!--more-->
 
 # ctfshow
@@ -52,6 +52,49 @@ bp抓包，flag在返回包里
 #### web8
 
 git泄露都考了，应该就是svn了，URL尾部添加`/.svn/`，得到flag
+
+#### web9
+
+vim修改，想起了之前校赛做到的一道vim缓存的题
+
+> 临时文件是在vim编辑文本时就会创建的文件，如果程序正常退出，临时文件自动删除，如果意外退出就会保留，当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容
+>
+> 以 index.php 为例 第一次产生的缓存文件名为`.index.php.swp`
+> 第二次意外退出后，文件名为`.index.php.swo`
+> 第三次产生的缓存文件则为`.index.php.swn`
+> 注意：index前有`.`
+
+本题在URL尾部添加`/index.php.swp`下载文件打开得到flag
+
+#### web10
+
+打开环境后根据题目信息，使用EditThisCookie查看cookie值得到flag
+
+#### web11
+
+根据题目信息对**ctfshow.com**进行DNS查询，在结果中找到flag
+
+#### web12
+
+...这个不看提示是真滴没思路
+
+根据提示查看robots协议发现禁止爬取`/admin/`页面
+
+打开此界面弹出登录窗口，使用`admin/首页最下方的电话号码`登录得到flag
+
+#### web13
+
+根据题目提示的技术文档，打开环境后以为会在博客页面中有所发现，但打开后未获取到有效信息
+
+在从头到尾的尝试后，在页面底部发现一个“文件”带有链接
+
+<img src="CTF靶场wp/7.jpg" style="zoom: 33%;" />
+
+打开后得到一个系统使用手册，在其中得到后台登陆地址及用户名密码
+
+打开后台登录，get flag
+
+
 
 # bugku
 
@@ -116,18 +159,23 @@ echo 'flag{**********}';
 ## web8
 > PHP暂略
 ## web9
+
 > PHP暂略
 ## web 10
 打开页面显示什么也没有？信个鬼
 根据描述头等舱，联想到消息头，BP抓包，在消息头中得到flag
 
+
+
 # ctfhub
 
-## web前置技能
+## 技能树
 
-### HTTP协议
+### web前置技能
 
-#### 请求方式
+#### HTTP协议
+
+##### 请求方式
 
 HTTP/1.1 八种请求方式: GET,POST,HEAD,OPTIONS,PUT,DELETE,TRACE,CONNECT
 
@@ -135,48 +183,86 @@ HTTP/1.1 八种请求方式: GET,POST,HEAD,OPTIONS,PUT,DELETE,TRACE,CONNECT
 
 bp抓包改包重放，得到flag
 
-#### 302跳转
+##### 302跳转
 
 看了wp才做出来
 
 打开环境，点击got flag后没反应，f12查看新出现了一个302的index.php页面，使用curl工具`-v`参数输出通信的整个过程，得到flag
 
-#### cookie
+##### cookie
 
 打开环境提示管理员才能得到flag
 
 使用EditThisCookie查看，有一个名为admin的cookie值为0，修改为1，刷新得到flag
 
-#### 基础认证
+##### 基础认证
 
 打开环境，有个获得flag的click按钮，点一下弹出窗口需要登陆验证，随便输一个`admin/123`，bp抓包
 
-<img src="web-wp/1.jpg" style="zoom:33%;" />
+<img src="CTF靶场wp/1.jpg" style="zoom:33%;" />
 
 头部有一个Authorization字段，后面的值解码发现是base64加密的`admin:123`
 
-<img src="web-wp/2.jpg" style="zoom:33%;" />
+<img src="CTF靶场wp/2.jpg" style="zoom:33%;" />
 
 在返回包里发现提示
 
-<img src="web-wp/3.jpg" style="zoom:33%;" />
+<img src="CTF靶场wp/3.jpg" style="zoom:33%;" />
 
 猜测用户名为admin
 
 下面就可以尝试爆破了，发送到Intruder模块，添加payload position
 
-<img src="web-wp/4.jpg" style="zoom:33%;" />
+<img src="CTF靶场wp/4.jpg" style="zoom:33%;" />
 
 选择模式，加载字典
 
-<img src="web-wp/5.jpg" style="zoom: 33%;" />
+<img src="CTF靶场wp/5.jpg" style="zoom: 33%;" />
 
 添加前缀`admin:`，并对密码进行base64加密处理（同时取消勾选URL编码，不然你会看到 base64 之后的 `=` 会被转成 `%3d` ，你就算爆破到天荒地老也不会出来）
 
-<img src="web-wp/6.jpg" style="zoom:33%;" />
+<img src="CTF靶场wp/6.jpg" style="zoom:33%;" />
 
 最后在一个状态码为200的响应返回包中发现flag
 
-#### 响应包源代码
+##### 响应包源代码
 
 饿饿. 打开环境查看源码 发现flag...我人傻了
+
+### 信息泄露
+
+#### 目录遍历
+
+打开环境 点击按钮，会跳到这个界面
+
+<img src="CTF靶场wp/8.jpg" style="zoom:33%;" />
+
+对目录进行地毯式搜索，可找到一个flag.txt文件，打开得到flag
+
+#### phpinfo
+
+啊 正好之前碰到的一个漏洞就是phpinfo信息泄露，要不然还不了解这个
+
+> `phpinfo()` 是php中查看相关信息的函数，当在页面中执行`phpinfo()`函数时，php会将自身的所有信息全部打印出来。在phpinfo中会泄露很多服务端的一些信息，例如安装的一些模块、网站绝对路径、服务器自身的操作系统、使用的组件版本等等，在phpinfo中获得的这些信息会为下一步的渗透/做题提供一些帮助
+
+就是在本题的phpinfo页面中`ctrl+f`，查找ctfhub，然后就找到flag了
+
+#### 备份文件下载
+
+##### 网站源码
+
+试了一下`www.zip`，直接一发入魂
+
+下载到本地解压发现一个`flag_46657223.txt`文件，但打开没有flag
+
+然后回到环境中，在URL尾部添加`/flag_46657223.txt`打开，得到flag
+
+##### bak文件
+
+打开环境提示flag在index.php的源码里，根据题目信息，在URL尾部添加`/index.php.bak`，下载文件到本地打开 得到flag
+
+##### vim缓存
+
+> 原理同**ctfshow/web入门/信息搜集/web9**
+
+但本题需在URL尾部添加`/.index.php.swp`  奇了个怪
