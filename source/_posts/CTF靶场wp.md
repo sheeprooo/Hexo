@@ -57,12 +57,6 @@ git泄露都考了，应该就是svn了，URL尾部添加`/.svn/`，得到flag
 
 vim修改，想起了之前校赛做到的一道vim缓存的题
 
-> 临时文件是在vim编辑文本时就会创建的文件，如果程序正常退出，临时文件自动删除，如果意外退出就会保留，当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容
->
-> 以 index.php 为例 第一次产生的缓存文件名为`.index.php.swp`
-> 第二次意外退出后，文件名为`.index.php.swo`
-> 第三次产生的缓存文件则为`.index.php.swn`
-> 注意：index前有`.`
 
 本题在URL尾部添加`/index.php.swp`下载文件打开得到flag
 
@@ -270,7 +264,12 @@ bp抓包改包重放，得到flag
 
 ##### vim缓存
 
-> 原理同**ctfshow/web入门/信息搜集/web9**
+> 临时文件是在vim编辑文本时就会创建的文件，如果程序正常退出，临时文件自动删除，如果意外退出就会保留，当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容
+>
+> 以 index.php 为例 第一次产生的缓存文件名为`.index.php.swp`
+> 第二次意外退出后，文件名为`.index.php.swo`
+> 第三次产生的缓存文件则为`.index.php.swn`
+> 注意：index前有`.`
 
 但本题需在URL尾部添加`/.index.php.swp`  （奇了个怪
 
@@ -283,4 +282,42 @@ bp抓包改包重放，得到flag
 <img src="CTF靶场wp/9.jpg" style="zoom: 50%;" />
 
 得到一个文件名，在URL尾部添加后读取到flag
+
+#### Git泄露
+
+> 开发人员会使用 git 进行版本控制，对站点自动部署。但如果配置不当，可能会将 .git 文件夹直接部署到线上环境，这就引起了 git 泄露漏洞，我们可以利用这个漏洞直接获得网页源码
+
+##### Log
+
+git泄露肯定要用到githack工具
+
+打开环境用githack克隆一下发现没啥东西？？？
+
+看了wp发现差的不是一点半点啊，
+
+后来才知道现在用的这个工具不行...（被工具背刺 妹想到的
+
+换了个工具克隆，这回没问题了
+
+<img src="CTF靶场wp/10.jpg" style="zoom:33%;" />
+
+打开克隆的文件夹，根据题目信息，使用`git log`命令查看版本信息
+
+<img src="CTF靶场wp/11.jpg" style="zoom:33%;" />
+
+可以看到现在的版本将flag移除，回退到上一个版本即可得到flag
+
+`git reset --hard HEAD^`回退到上一个版本
+
+> 在Git中，用HEAD表示当前版本，所以回退到上一个版本就只需要使用命令：`git reset --hard HEAD^ `
+>
+> 回退到上上个版本则使用命令：`git reset --hard HEAD^^`
+>
+> 要是需要回退到20个版本之前的话，就可以使用命令：`git reset --hard HEAD~20`
+
+本题还可以使用`git reset --hard 358fe9789f3d1f9eaafe913bb335df0c6c517d3e`来回退
+
+回退后使用`ls`命令查看目录，然后使用`cat`命令查看文件 得到flag
+
+<img src="CTF靶场wp/12.jpg" style="zoom:33%;" />
 
