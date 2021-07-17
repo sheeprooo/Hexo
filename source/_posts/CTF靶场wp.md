@@ -88,6 +88,58 @@ vim修改，想起了之前校赛做到的一道vim缓存的题
 
 打开后台登录，get flag
 
+#### web14
+
+根据题目信息在URL尾部添加`/editor/`访问编辑器
+
+<img src="CTF靶场wp/13.jpg" style="zoom: 50%;" />
+
+发现一个上传文件选项 打开
+
+<img src="CTF靶场wp/14.jpg" style="zoom: 50%;" />
+
+打开文件空间
+
+<img src="CTF靶场wp/15.jpg" style="zoom:33%;" />
+
+逐个搜索后，在`var/www/html/nothinghere/`中发现**fl000g.txt**文件
+
+最后回到初始界面，在URL尾部添加`/nothinghere/fl000g.txt`打开，得到flag
+
+#### web15
+
+根据题目信息在页面底部发现一个邮箱，肯定要利用到登录
+
+点击页面上方的登录是个空链接
+
+使用dirsearch扫描到一个`/admin/`界面，访问
+
+<img src="CTF靶场wp/16.jpg" style="zoom:33%;" />
+
+不知道密码，点击忘记密码试试
+
+<img src="CTF靶场wp/17.jpg" style="zoom:33%;" />
+
+根据QQ邮箱的QQ号查到所在地址为西安
+
+输入西安
+
+<img src="CTF靶场wp/18.jpg" style="zoom: 50%;" />
+
+使用`1156631961@qq.com/admin7789`登录显示用户名错误
+
+改用`admin/admin7789`试试
+
+成功拿到flag
+
+#### web16
+
+
+
+### 爆破
+
+#### web21
+
 
 
 # bugku
@@ -289,6 +341,8 @@ bp抓包改包重放，得到flag
 
 ##### Log
 
+> `git log`命令可以查看历史版本信息
+
 git泄露肯定要用到githack工具
 
 打开环境用githack克隆一下发现没啥东西？？？
@@ -309,7 +363,9 @@ git泄露肯定要用到githack工具
 
 `git reset --hard HEAD^`回退到上一个版本
 
-> 在Git中，用HEAD表示当前版本，所以回退到上一个版本就只需要使用命令：`git reset --hard HEAD^ `
+> 在Git中，用HEAD表示当前版本，
+>
+> 所以回退到上一个版本就只需要使用命令：`git reset --hard HEAD^ `
 >
 > 回退到上上个版本则使用命令：`git reset --hard HEAD^^`
 >
@@ -320,4 +376,6 @@ git泄露肯定要用到githack工具
 回退后使用`ls`命令查看目录，然后使用`cat`命令查看文件 得到flag
 
 <img src="CTF靶场wp/12.jpg" style="zoom:33%;" />
+
+##### Stash
 
