@@ -56,7 +56,12 @@ git泄露都考了，应该就是svn了，URL尾部添加`/.svn/`，得到flag
 
 #### web9
 
-vim修改，想起了之前校赛做到的一道vim缓存的题
+> 临时文件是在vim编辑文本时就会创建的文件，如果程序正常退出，临时文件自动删除，如果意外退出就会保留，当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容
+>
+> 以 index.php 为例 第一次产生的缓存文件名为`.index.php.swp`
+> 第二次意外退出后，文件名为`.index.php.swo`
+> 第三次产生的缓存文件则为`.index.php.swn`
+> 注意：index前有`.`
 
 
 本题在URL尾部添加`/index.php.swp`下载文件打开得到flag
@@ -71,6 +76,8 @@ vim修改，想起了之前校赛做到的一道vim缓存的题
 
 #### web12
 
+> robots协议也叫robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它通常告诉网络搜索引擎的漫游器（又称网络蜘蛛），此网站中的哪些内容是不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。robots.txt应放置于网站的根目录下，同时robots协议并不是一个规范，而只是约定俗成的，所以并不能保证网站的隐私
+
 ...这个不看提示是真滴没思路
 
 根据提示查看robots协议发现禁止爬取`/admin/`页面
@@ -79,17 +86,21 @@ vim修改，想起了之前校赛做到的一道vim缓存的题
 
 #### web13
 
+> 默认配置泄露：document泄露：网站目录存在document文件，如document.pdf，部署环境后没有及时修改document文件里的默认的账号密码，导致敏感信息泄露
+
 根据题目提示的技术文档，打开环境后以为会在博客页面中有所发现，但打开后未获取到有效信息
 
-在从头到尾的尝试后，在页面底部发现一个“文件”带有链接
+在从头到尾的尝试后，在页面底部发现一个**document**带有链接
 
 <img src="CTF靶场wp/7.jpg" style="zoom: 33%;" />
 
-打开后得到一个系统使用手册，在其中得到后台登陆地址及用户名密码
+打开后得到一个系统使用手册`/document.pdf`，在其中得到后台登陆地址及用户名密码
 
 打开后台登录，get flag
 
 #### web14
+
+> 默认配置泄露：editor泄露：常用：直接访问example.com/editor，插入处可获知路径
 
 根据题目信息在URL尾部添加`/editor/`访问编辑器
 
@@ -135,11 +146,116 @@ vim修改，想起了之前校赛做到的一道vim缓存的题
 
 #### web16
 
+> php探针是用来探测空间、服务器运行状况和PHP信息用的，探针可以实时查看服务器硬盘资源、内存占用、网卡流量、系统负载、服务器时间等信息
 
+在URL尾部添加`/tz.php`，打开此页面
+
+试了一下，**dirsearch**和**dirmap**扫描目录都没有扫到`/tz.php`
+
+<img src="CTF靶场wp/19.jpg" style="zoom:33%;" />
+
+在PHP相关参数中打开PHPINFO界面，搜索flag，get
+
+#### web17
+
+`ping`了一下**ctfer.com**，`ping`不通
+
+原来...
+
+<img src="CTF靶场wp/20.jpg" style="zoom:33%;" />
+
+改`ping`一下**ctfshow.com**得到**IP**，即可提交flag
+
+#### web18
+
+打开环境是一个游戏，f12审查元素
+
+打开`/js/Flappy_js.js`审计代码
+
+```javascript
+if(score>100)
+{
+var result=window.confirm("\u4f60\u8d62\u4e86\uff0c\u53bb\u5e7a\u5e7a\u96f6\u70b9\u76ae\u7231\u5403\u76ae\u770b\u770b");
+}
+else
+{
+var result=window.confirm("GAMEOVER\n是否从新开始");
+if(result){
+location.reload();}
+}
+```
+
+对`\u4f60\u8d62\u4e86\uff0c\u53bb\u5e7a\u5e7a\u96f6\u70b9\u76ae\u7231\u5403\u76ae\u770b\u770b`进行Unicode解码，得到**你赢了，去幺幺零点皮爱吃皮看看**
+
+打开`/110.php`得到flag
+
+#### web19
+
+查看源代码，在下面发现注释的php片段
+
+```php
+error_reporting(0);
+    $flag="fakeflag"
+    $u = $_POST['username'];
+    $p = $_POST['pazzword'];
+    if(isset($u) && isset($p)){
+        if($u==='admin' && $p ==='a599ac85a73384ee3219fa684296eaa62667238d608efa81837030bd1ce1bf04'){
+            echo $flag;
+        }
+}
+```
+
+输入用户名密码后登录却显示错误
+
+抓包测试发现`admin/123456`被编码为了`username=admin&pazzword=226d550329a609347c3cc2ec97532645`
+
+打开hackbar，使用post传参，出现flag
+
+#### web20
+
+> mdb文件是早期asp+access构架的数据库文件
+
+没思路，通过hint查看`/db/db.mdb`，下载到本地，查看**db.mdb**文件，搜索flag/ctfhub，get it!
 
 ### 爆破
 
 #### web21
+
+## misc入门
+
+### 图片篇（基础操作）
+
+#### misc1
+
+一个简单的图片，通过识别文字获取flag
+
+#### misc2
+
+> [十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)
+
+一个**txt**文件 打开之后是乱码，使用winhex查看16进制文件头发现是png格式，修改后缀名
+
+#### misc3
+
+是一个bpg文件，可使用Bandzip附带的Honeyview打开查看，得到flag
+
+#### misc4
+
+一共六个txt文件，使用winhex查看文件头，通过对照[十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)中的信息，将其分别修改为``，``，
+
+### 图片篇（信息附加）
+
+#### misc5
+
+## crypto
+
+### 0x00
+
+#### 密码学签到
+
+倒置即可
+
+#### crypto2
 
 
 
@@ -301,7 +417,7 @@ bp抓包改包重放，得到flag
 ##### 网站源码
 
 > 常见的网站源码备份文件名：`web`，`website`，`backup`，`back`，`www`，`wwwroot`，`temp`
-> 常见的网站源码备份文件后缀：`.zip`，`.rar`，`.tar`，`.tar.gz`，`.7z`
+> 常见的网站源码备份文件后缀：`.zip`，`.rar`，`.tar`，`.tar.gz`，`.7z`，`.bak`，`.txt` ，`.old`，`.temp`
 
 试了一下`www.zip`   一发入魂
 
@@ -317,12 +433,7 @@ bp抓包改包重放，得到flag
 
 ##### vim缓存
 
-> 临时文件是在vim编辑文本时就会创建的文件，如果程序正常退出，临时文件自动删除，如果意外退出就会保留，当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容
->
-> 以 index.php 为例 第一次产生的缓存文件名为`.index.php.swp`
-> 第二次意外退出后，文件名为`.index.php.swo`
-> 第三次产生的缓存文件则为`.index.php.swn`
-> 注意：index前有`.`
+> 原理同**ctfshow/web入门/信息搜集/web9**
 
 但本题需在URL尾部添加`/.index.php.swp`  （奇了个怪
 
@@ -380,3 +491,8 @@ git泄露肯定要用到githack工具
 
 ##### Stash
 
+#### SVN泄露
+
+http://www.qishunwang.net/news_show_62103.aspx
+
+https://www.freesion.com/article/98721217183/
