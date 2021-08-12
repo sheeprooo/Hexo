@@ -164,8 +164,6 @@ git泄露都考了，应该就是svn了，URL尾部添加`/.svn/`，得到flag
 
 <img src="CTF靶场wp/20.jpg" style="zoom:33%;" />
 
-改`ping`一下**ctfshow.com**得到**IP**，即可提交flag
-
 #### web18
 
 打开环境是一个游戏，f12审查元素
@@ -209,17 +207,95 @@ error_reporting(0);
 
 抓包测试发现`admin/123456`被编码为了`username=admin&pazzword=226d550329a609347c3cc2ec97532645`
 
-打开hackbar，使用post传参，出现flag
+打开hackbar，使用post传参绕过前端哈希，即可出现flag
 
 #### web20
 
 > mdb文件是早期asp+access构架的数据库文件
+>
+> `/db`目录是常用的数据库作为文件存储的目录
+>
+> 数据库文件常用名为**data.mdb**/**db.mdb**
 
-没思路，通过hint查看`/db/db.mdb`，下载到本地，查看**db.mdb**文件，搜索flag/ctfhub，get it!
+没思路，通过hint提示查看`/db/db.mdb`，下载到本地，查看**db.mdb**文件，搜索flag/ctfhub，get it!
 
 ### 爆破
 
 #### web21
+
+一个登录界面，bp抓包，随便输入`admin/123456`登录
+
+<img src="CTF靶场wp/22.jpg" style="zoom: 50%;" />
+
+消息头有一行这样的东西，base64解码一下发现是`admin:123456`
+
+然后添加爆破点，加载附件里的字典
+
+<img src="CTF靶场wp/23.jpg" style="zoom: 33%;" />
+
+添加头部`admin:`，再添加base64编码
+
+开始爆破，最终可得到flag
+
+<img src="CTF靶场wp/24.jpg" style="zoom:33%;" />
+
+#### web22
+
+爆破域名，尝试子域名爆破，但感觉没得到啥有用的信息
+
+看了视频题解之后
+
+。。。
+
+<img src="CTF靶场wp/25.jpg" style="zoom:50%;" />
+
+<img src="表情包/1.gif" style="zoom:33%;" />
+
+### 文件上传
+
+#### web151
+
+打开环境有提示前端验证不可靠，试着提交几个webshell，确实`php`格式不行，但是`jpg`竟然也不行???
+
+`png`格式可以（瞧不起我？.jpg
+
+提交一个png的webshell，然后bp改包将扩展名改成`.php`
+
+<img src="CTF靶场wp/26.jpg" style="zoom: 50%;" />
+
+好耶，接下来就是愉快的getshell过程
+
+<img src="CTF靶场wp/27.jpg" style="zoom:50%;" />
+
+从此爱上绿色（bushi
+
+打开虚拟终端，
+
+<img src="CTF靶场wp/28.jpg" style="zoom: 50%;" />
+
+一套组合拳直接带走
+
+#### web152
+
+打开环境提示后端校验，
+
+同**web151**可使用bp改包绕过后端验证
+
+getshell拿flag同理
+
+
+
+## web
+
+### 0x00
+
+#### web签到题
+
+f12查看源码发现一串注释的字符，丢到**hasher**里解码，在**base64**解码后得到flag
+
+#### web2
+
+
 
 ## misc入门
 
@@ -233,7 +309,7 @@ error_reporting(0);
 
 > [十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)
 
-一个**txt**文件 打开之后是乱码，使用winhex查看16进制文件头发现是png格式，修改后缀名
+一个**txt**文件 打开之后是乱码，使用winhex查看16进制文件头发现是`.png`格式，修改后缀名打开即可得到flag
 
 #### misc3
 
@@ -241,7 +317,7 @@ error_reporting(0);
 
 #### misc4
 
-一共六个txt文件，使用winhex查看文件头，通过对照[十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)中的信息，将其分别修改为``，``，
+一共六个txt文件，使用winhex查看文件头，通过对照[十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)中的信息，将其分别修改为`.jpg`，`.png`，` `
 
 ### 图片篇（信息附加）
 
@@ -324,7 +400,7 @@ echo 'flag{**********}';
 ## web9
 
 > PHP暂略
-## web 10
+## web10
 打开页面显示什么也没有？信个鬼
 根据描述头等舱，联想到消息头，BP抓包，在消息头中得到flag
 
@@ -496,3 +572,25 @@ git泄露肯定要用到githack工具
 http://www.qishunwang.net/news_show_62103.aspx
 
 https://www.freesion.com/article/98721217183/
+
+# BUU
+
+## web
+
+### [极客大挑战 2019]Havefun
+
+<img src="CTF靶场wp/21.jpg" style="zoom:50%;" />
+
+撸猫(*/ω＼*) 猫猫最可爱了
+
+审计源码
+
+```php
+$cat=$_GET['cat'];
+	echo $cat;
+	if($cat=='dog'){
+		echo 'Syc{cat_cat_cat_cat}';
+        }
+```
+
+在URL后面`?cat=dog`，得到flag
