@@ -103,11 +103,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: islu
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: https://github.com/sheeprooo/sheeprooo.github.io.git
+  repository: git@github.com:sheeprooo/sheeprooo.github.io.git
   branch: master
