@@ -3,11 +3,10 @@ title: GKCTF × DASCTF 2021 WP
 date: 2021-06-26 17:43:59
 tags:	CTF
 categories:	CTF
+description: Only one 只有一道题
 ---
 
-只有一道题
 
-<!--more-->
 
 # easycms
 
