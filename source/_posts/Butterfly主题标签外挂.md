@@ -616,6 +616,12 @@ Any content (support inline tags too.io).
 > {% galleryGroup 'OH MY GIRL' '关于OH MY GIRL的图片' '/Gallery/ohmygirl' https://i.loli.net/2019/12/25/hOqbQ3BIwa6KWpo.jpg %}
 > </div>
 > ```
+>
+> <div class="gallery-group-main">
+> {% galleryGroup '壁纸' '收藏的一些壁纸' '/Gallery/wallpaper' https://i.loli.net/2019/11/10/T7Mu8Aod3egmC4Q.png %}
+> {% galleryGroup '漫威' '关于漫威的图片' '/Gallery/marvel' https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg %}
+> {% galleryGroup 'OH MY GIRL' '关于OH MY GIRL的图片' '/Gallery/ohmygirl' https://i.loli.net/2019/12/25/hOqbQ3BIwa6KWpo.jpg %}
+> </div>
 
 # Gallery相册
 
@@ -627,7 +633,7 @@ markdown 图片格式
 
 > **e.g.**
 >
-> ```markdown
+> ```html
 > {% gallery %}
 > ![](https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg)
 > ![](https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg)
@@ -639,6 +645,17 @@ markdown 图片格式
 > ![](https://i.loli.net/2019/12/25/2tu9JC8ewpBFagv.jpg)
 > {% endgallery %}
 > ```
+>
+> {% gallery %}
+> ![](https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg)
+> ![](https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg)
+> ![](https://i.loli.net/2019/12/25/gEy5Zc1Ai6VuO4N.jpg)
+> ![](https://i.loli.net/2019/12/25/d6QHbytlSYO4FBG.jpg)
+> ![](https://i.loli.net/2019/12/25/6nepIJ1xTgufatZ.jpg)
+> ![](https://i.loli.net/2019/12/25/E7Jvr4eIPwUNmzq.jpg)
+> ![](https://i.loli.net/2019/12/25/mh19anwBSWIkGlH.jpg)
+> ![](https://i.loli.net/2019/12/25/2tu9JC8ewpBFagv.jpg)
+> {% endgallery %}
 
 # tag-hide
 
@@ -738,3 +755,337 @@ content
 >
 > {% endhideToggle %}
 
+# mermaid
+
+> mermaid标签不允许嵌套于一些隐藏属性的标签外挂，例如: tag-hide内的标签外挂和tabs标签外挂，这会导致mermaid图示无法正常显示，使用时请留意
+>
+> **请不要压缩html代码，不然会导致mermaid显示异常**
+
+使用mermaid标签可以绘制Flowchart（流程图）、Sequence diagram（时序图 ）、Class Diagram（类别图）、State Diagram（状态图）、Gantt（甘特图）和Pie Chart（圆形图）
+
+```
+{% mermaid %}
+内容
+{% endmermaid %}
+```
+
+> **e.g.**
+>
+> ```
+> {% mermaid %}
+> pie
+>     title Key elements in Product X
+>     "Calcium" : 42.96
+>     "Potassium" : 50.05
+>     "Magnesium" : 10.01
+>     "Iron" :  5
+> {% endmermaid %}
+> ```
+>
+> {% mermaid %}
+> pie
+>     title Key elements in Product X
+>     "Calcium" : 42.96
+>     "Potassium" : 50.05
+>     "Magnesium" : 10.01
+>     "Iron" :  5
+> {% endmermaid %}
+
+# Tabs
+
+```markdown
+{% tabs Unique name, [index] %}
+<!-- tab [Tab caption] [@icon] -->
+Any content (support inline tags too).
+<!-- endtab -->
+{% endtabs %}
+
+Unique name   : Unique name of tabs block tag without comma.
+                Will be used in #id's as prefix for each tab with their index numbers.
+                If there are whitespaces in name, for generate #id all whitespaces will replaced by dashes.
+                Only for current url of post/page must be unique!
+[index]       : Index number of active tab.
+                If not specified, first tab (1) will be selected.
+                If index is -1, no tab will be selected. It's will be something like spoiler.
+                Optional parameter.
+[Tab caption] : Caption of current tab.
+                If not caption specified, unique name with tab index suffix will be used as caption of tab.
+                If not caption specified, but specified icon, caption will empty.
+                Optional parameter.
+[@icon]       : FontAwesome icon name (full-name, look like 'fas fa-font')
+                Can be specified with or without space; e.g. 'Tab caption @icon' similar to 'Tab caption@icon'.
+                Optional parameter.
+```
+
+{% note info flat %}
+
+Demo1 -  预设选择第一个【默认】
+
+{% endnote %}
+
+```markdown
+{% tabs test1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+```
+
+{% tabs test1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+
+{% note info flat %}
+Demo 2 - 预设选择tabs
+{% endnote %}
+
+```markdown
+{% tabs test2, 3 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+```
+
+{% tabs test2, 3 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+
+{% note info flat %}
+Demo 3 - 没有预设值
+{% endnote %}
+
+```markdown
+{% tabs test3, -1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+```
+
+{% tabs test3, -1 %}
+<!-- tab -->
+**This is Tab 1.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 2.**
+<!-- endtab -->
+
+<!-- tab -->
+**This is Tab 3.**
+<!-- endtab -->
+{% endtabs %}
+
+{% note info flat %} 
+
+Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
+
+{% endnote %}
+
+```markdown
+{% tabs test4 %}
+<!-- tab 第一个Tab -->
+**tab名字为第一个Tab**
+<!-- endtab -->
+
+<!-- tab @fab fa-apple-pay -->
+**只有图标 没有Tab名字**
+<!-- endtab -->
+
+<!-- tab 炸弹@fas fa-bomb -->
+**名字+icon**
+<!-- endtab -->
+{% endtabs %}
+```
+
+{% tabs test4 %}
+<!-- tab 第一个Tab -->
+**tab名字为第一个Tab**
+<!-- endtab -->
+
+<!-- tab @fab fa-apple-pay -->
+**只有图标 没有Tab名字**
+<!-- endtab -->
+
+<!-- tab 炸弹@fas fa-bomb -->
+**名字+icon**
+<!-- endtab -->
+{% endtabs %}
+
+# Button
+
+```
+{% btn [url],[text],[icon],[color] [style] [layout] [position] [size] %}
+
+[url]         : 链接
+[text]        : 按钮文字
+[icon]        : [可选] 图标
+[color]       : [可选] 按钮背景顔色(默认style时）
+                      按钮字体和边框顔色(outline时)
+                      default/blue/pink/red/purple/orange/green
+[style]       : [可选] 按钮样式 默认实心
+                      outline/留空
+[layout]      : [可选] 按钮佈局 默认为line
+                      block/留空
+[position]    : [可选] 按钮位置 前提是设置了layout为block 默认为左边
+                      center/right/留空
+[size]        : [可选] 按钮大小
+                      larger/留空
+```
+
+> ```
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,,outline %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,larger %}
+> ```
+>
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,,outline %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline %}
+> This is my website, click the button {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,larger %}
+>
+> ```
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,block %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,block center larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,block right outline larger %}
+> ```
+>
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,block %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,block center larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,block right outline larger %}
+>
+> ```
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,blue larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,pink larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,red larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,purple larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,orange larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,green larger %}
+> ```
+>
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,blue larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,pink larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,red larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,purple larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,orange larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,green larger %}
+>
+> ```
+> <div class="btn-center">
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline blue larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline pink larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline red larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline purple larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline orange larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline green larger %}
+> </div>
+> ```
+>
+> <div class="btn-center">
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline blue larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline pink larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline red larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline purple larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline orange larger %}
+> {% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,outline green larger %}
+> </div>
+
+# inlineImg
+
+主题中的图片都是默认以块级元素显示，如果你想以内联元素显示，可以使用这个标签外挂
+
+```
+{% inlineImg [src] [height] %}
+
+[src]      :    图片链接
+[height]   ：   图片高度限制【可选】
+```
+
+> **e.g.**
+>
+> ```
+> 你看我长得漂亮不
+> 
+> ![](https://i.loli.net/2021/03/19/2P6ivUGsdaEXSFI.png)
+> 
+> 我觉得很漂亮 {% inlineImg https://i.loli.net/2021/03/19/5M4jUB3ynq7ePgw.png 150px %}
+> ```
+>
+> 你看我长得漂亮不
+>
+> ![](https://i.loli.net/2021/03/19/2P6ivUGsdaEXSFI.png)
+>
+> 我觉得很漂亮 {% inlineImg https://i.loli.net/2021/03/19/5M4jUB3ynq7ePgw.png 150px %}
+
+# label
+
+```
+{% label text color %}
+```
+
+| 参数  | 解释                                                         |
+| ----- | ------------------------------------------------------------ |
+| text  | 文字                                                         |
+| color | 【可选】背景颜色，默认为`default`<br/>default/blue/pink/red/purple/orange/green |
+
+> **e.g.**
+>
+> ```
+> 臣亮言：{% label 先帝 %}创业未半，而{% label 中道崩殂 blue %}。今天下三分，{% label 益州疲敝 pink %}，此诚{% label 危急存亡之秋 red %}也！然侍衞之臣，不懈于内；{% label 忠志之士 purple %}，忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气；不宜妄自菲薄，引喻失义，以塞忠谏之路也。
+> 宫中、府中，俱为一体；陟罚臧否，不宜异同。若有{% label 作奸 orange %}、{% label 犯科 green %}，及为忠善者，宜付有司，论其刑赏，以昭陛下平明之治；不宜偏私，使内外异法也。
+> ```
+>
+> 臣亮言：{% label 先帝 %}创业未半，而{% label 中道崩殂 blue %}。今天下三分，{% label 益州疲敝 pink %}，此诚{% label 危急存亡之秋 red %}也！然侍衞之臣，不懈于内；{% label 忠志之士 purple %}，忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气；不宜妄自菲薄，引喻失义，以塞忠谏之路也。
+> 宫中、府中，俱为一体；陟罚臧否，不宜异同。若有{% label 作奸 orange %}、{% label 犯科 green %}，及为忠善者，宜付有司，论其刑赏，以昭陛下平明之治；不宜偏私，使内外异法也。
