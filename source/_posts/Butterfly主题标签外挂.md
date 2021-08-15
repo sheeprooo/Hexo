@@ -630,7 +630,7 @@ Any content (support inline tags too.io).
 markdown 图片格式
 {% endgallery %}
 ```
-
+**不能置于引用下，会导致图片不显示**
 
 ```html
 {% gallery %}
