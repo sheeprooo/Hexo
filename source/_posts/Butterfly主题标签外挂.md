@@ -13,7 +13,7 @@ copyright:
 copyright_author: Jerry
 copyright_author_href: 
 copyright_url: https://butterfly.js.org/posts/dc584b87/
-copyright_info:
+copyright_info: 本篇文章内容转载自Butterfly官方文档，如需转载/引用请访问原文链接
 ---
 
 > 标签外挂是Hexo独有的功能，并不是标准的Markdown格式
