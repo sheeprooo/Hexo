@@ -110,3 +110,36 @@ deploy:
   type: git
   repository: git@github.com:sheeprooo/sheeprooo.github.io.git
   branch: master
+
+#douban插件
+douban:
+  user: 226862341
+  builtin: true
+  book:
+    title: '那些年,我读过的书'
+    quote: 'This is my book quote'
+    meta: true
+    comments: true
+    top_img: https://z3.ax1x.com/2021/08/14/f6513t.jpg
+    aside: true
+    path: books
+    limit:
+  movie:
+    title: '那些年,我看过的电影'
+    quote: 'This is my movie quote'
+    meta: true
+    comments: true
+    top_img: https://z3.ax1x.com/2021/08/14/f6513t.jpg
+    aside: true
+    path: movies
+    limit:
+  #game:
+    #title: 'This is my game title'
+    #quote: 'This is my game quote'
+    #meta: true
+    #comments: true
+    #top_img: https://cccccc.png
+    #aside: true
+    #path: games
+    #limit:
+  timeout: 10000 
