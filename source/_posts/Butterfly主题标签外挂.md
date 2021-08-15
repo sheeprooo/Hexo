@@ -344,3 +344,301 @@ Any content (support inline tags too.io).
 {% endnote %}
 ```
 
+| 名称  | 用法                                                         |
+| ----- | ------------------------------------------------------------ |
+| color | 【可选】顔色<br/>(default / blue / pink / red / purple / orange / green) |
+| icon  | 【可选】可配置自定义 icon (只支持 fontawesome 图标, 也可以配置 no-icon ) |
+| style | 【可选】可以覆盖配置中的 style<br/>（simple/modern/flat/disabled） |
+
+### simple
+
+```markdown
+{% note 'fab fa-cc-visa' simple %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' simple %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' simple %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' simple%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' simple %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' simple %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' simple %}
+前端最讨厌的浏览器
+{% endnote %}
+```
+
+{% note 'fab fa-cc-visa' simple %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' simple %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' simple %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' simple%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' simple %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' simple %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' simple %}
+前端最讨厌的浏览器
+{% endnote %}
+
+### modern
+
+```markdown
+{% note 'fab fa-cc-visa' modern %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' modern %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' modern %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' modern%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' modern %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' modern %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' modern %}
+前端最讨厌的浏览器
+{% endnote %}
+```
+
+{% note 'fab fa-cc-visa' modern %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' modern %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' modern %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' modern%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' modern %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' modern %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' modern %}
+前端最讨厌的浏览器
+{% endnote %}
+
+### flat
+
+```markdown
+{% note 'fab fa-cc-visa' flat %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' flat %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' flat %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' flat%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' flat %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' flat %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' flat %}
+前端最讨厌的浏览器
+{% endnote %}
+```
+
+{% note 'fab fa-cc-visa' flat %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' flat %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' flat %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' flat%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' flat %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' flat %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' flat %}
+前端最讨厌的浏览器
+{% endnote %}
+
+### disabled
+
+```markdown
+{% note 'fab fa-cc-visa' disabled %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' disabled %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' disabled %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' disabled %}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' disabled %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' disabled %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' disabled %}
+前端最讨厌的浏览器
+{% endnote %}
+```
+
+{% note 'fab fa-cc-visa' disabled %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue 'fas fa-bullhorn' disabled %}
+2021年快到了....
+{% endnote %}
+{% note pink 'fas fa-car-crash' disabled %}
+小心开车 安全至上
+{% endnote %}
+{% note red 'fas fa-fan' disabled %}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange 'fas fa-battery-half' disabled %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple 'far fa-hand-scissors' disabled %}
+剪刀石头布
+{% endnote %}
+{% note green 'fab fa-internet-explorer' disabled %}
+前端最讨厌的浏览器
+{% endnote %}
+
+### no-icon
+
+```markdown
+{% note no-icon %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue no-icon %}
+2021年快到了....
+{% endnote %}
+{% note pink no-icon %}
+小心开车 安全至上
+{% endnote %}
+{% note red no-icon %}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange no-icon %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple no-icon %}
+剪刀石头布
+{% endnote %}
+{% note green no-icon %}
+前端最讨厌的浏览器
+{% endnote %}
+```
+
+{% note no-icon %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue no-icon %}
+2021年快到了....
+{% endnote %}
+{% note pink no-icon %}
+小心开车 安全至上
+{% endnote %}
+{% note red no-icon %}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange no-icon %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple no-icon %}
+剪刀石头布
+{% endnote %}
+{% note green no-icon %}
+前端最讨厌的浏览器
+{% endnote %}
+
+# Gallery相册图库
+
+```html
+<div class="gallery-group-main">
+{% galleryGroup name description link img-url %}
+{% galleryGroup name description link img-url %}
+{% galleryGroup name description link img-url %}
+</div>
+```
+
+| 名称        | 用法                 |
+| ----------- | -------------------- |
+| name        | 图库名字             |
+| description | 图库描述             |
+| link        | 连接到对应相册的地址 |
+| img-url     | 图库封面的地址       |
+
+> **e.g.**
+>
+> ```html
+> <div class="gallery-group-main">
+> {% galleryGroup '壁纸' '收藏的一些壁纸' '/Gallery/wallpaper' https://i.loli.net/2019/11/10/T7Mu8Aod3egmC4Q.png %}
+> {% galleryGroup '漫威' '关于漫威的图片' '/Gallery/marvel' https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg %}
+> {% galleryGroup 'OH MY GIRL' '关于OH MY GIRL的图片' '/Gallery/ohmygirl' https://i.loli.net/2019/12/25/hOqbQ3BIwa6KWpo.jpg %}
+> </div>
+> ```
+
+# Gallery相册
+
+```
+{% gallery %}
+markdown 图片格式
+{% endgallery %}
+```
+
+> **e.g.**
+>
+> ```markdown
+> {% gallery %}
+> ![](https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg)
+> ![](https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg)
+> ![](https://i.loli.net/2019/12/25/gEy5Zc1Ai6VuO4N.jpg)
+> ![](https://i.loli.net/2019/12/25/d6QHbytlSYO4FBG.jpg)
+> ![](https://i.loli.net/2019/12/25/6nepIJ1xTgufatZ.jpg)
+> ![](https://i.loli.net/2019/12/25/E7Jvr4eIPwUNmzq.jpg)
+> ![](https://i.loli.net/2019/12/25/mh19anwBSWIkGlH.jpg)
+> ![](https://i.loli.net/2019/12/25/2tu9JC8ewpBFagv.jpg)
+> {% endgallery %}
+> ```
+
+# tag-hide
+
