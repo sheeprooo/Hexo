@@ -1,7 +1,7 @@
 ---
 title: CTF学习笔记
 date: 2021-05-27 19:47:32
-categories:	CTF
+categories:	学习
 tags: CTF
 description: 萌新的入坑记录
 sticky:

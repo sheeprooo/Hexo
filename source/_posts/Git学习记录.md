@@ -2,7 +2,7 @@
 title: Git学习记录
 date: 2021-04-17 14:53:54
 tags: Git
-categories:	开发
+categories:	学习
 description: 萌新在线嘤嘤嘤
 sticky:
 keywords:

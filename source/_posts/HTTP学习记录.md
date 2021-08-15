@@ -1,12 +1,18 @@
 ---
 title: HTTP学习记录
 date: 2021-07-12 12:13:40
-tags: "HTTP"
+categories: 学习
+tags: HTTP
+description: 《图解HTTP》学习记录
+sticky:
+keywords: HTTP
+cover:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
 ---
-
-《图解HTTP》学习记录
-
-<!--more-->
 
 ## URI和URL
 

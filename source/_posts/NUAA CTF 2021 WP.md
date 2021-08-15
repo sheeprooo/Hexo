@@ -9,11 +9,6 @@ description: 第一场正式的的CTF比赛WP
 sticky:
 keywords:
 cover:
-copyright:
-copyright_author:
-copyright_author_href:
-copyright_url:
-copyright_info:
 ---
 
 # NUAA CTF 2021 Web Write up
