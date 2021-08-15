@@ -2,14 +2,21 @@
 title: NUAA CTF 2021 Web Write up
 date: 2021-04-10 20:23:04
 categories:	CTF
-tags:	CTF
+tags: 
+  - CTF
+  - WP 
+description: 第一场正式的的CTF比赛WP
+sticky:
+keywords:
+cover:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
 ---
 
 # NUAA CTF 2021 Web Write up
-
-第一场正式的的CTF比赛WP
-
-<!--more-->
 
 ## 签到题
 打开环境，查看网页源代码，即发现flag

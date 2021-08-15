@@ -3,10 +3,18 @@ title: CTF学习笔记
 date: 2021-05-27 19:47:32
 categories:	CTF
 tags: CTF
+description: 萌新的入坑记录
+sticky:
+keywords:
+  - 参照表
+  - 语法
+cover:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
 ---
-萌新的入坑记录
-<!--more-->
-
 # web
 
 ## URL编码

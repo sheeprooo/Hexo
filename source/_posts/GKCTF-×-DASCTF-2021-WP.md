@@ -1,9 +1,19 @@
 ---
 title: GKCTF × DASCTF 2021 WP
 date: 2021-06-26 17:43:59
-tags:	CTF
+tags:
+  - CTF
+  - WP
 categories:	CTF
 description: Only one 只有一道题
+sticky:
+keywords:
+cover:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
 ---
 
 
