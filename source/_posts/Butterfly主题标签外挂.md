@@ -642,3 +642,99 @@ markdown 图片格式
 
 # tag-hide
 
+## Inline
+
+`inline` 在文本里面添加按钮隐藏内容，只限文字
+
+```
+{% hideInline content,display,bg,color %}
+```
+
+| 名称    | 用法                                              |
+| ------- | ------------------------------------------------- |
+| content | 文本内容<br>content不能包含英文逗号，可用`sbquo;` |
+| display | 按钮显示的文字(可选)                              |
+| bg      | 按钮的背景颜色(可选)                              |
+| color   | 按钮文字的颜色(可选)                              |
+
+> **e.g.**
+>
+> ```
+> 哪个英文字母最酷？ {% hideInline 因为西装裤(C装酷),查看答案,#FF7242,#fff %}
+> 
+> 门里站着一个人? {% hideInline 闪 %}
+> ```
+>
+> 哪个英文字母最酷？ {% hideInline 因为西装裤(C装酷),查看答案,#FF7242,#fff %}
+>
+> 门里站着一个人? {% hideInline 闪 %}
+
+## Block
+
+`block`独立的block隐藏内容，可以隐藏很多内容，包括图片，代码块等等
+
+```
+{% hideBlock display,bg,color %}
+content
+{% endhideBlock %}
+```
+
+| 名称    | 用法                                                         |
+| ------- | ------------------------------------------------------------ |
+| content | 文本内容                                                     |
+| display | 按钮显示的文字(可选)<br> display 不能包含英文逗号，可用`&sbquo;` |
+| bg      | 按钮的背景颜色(可选)                                         |
+| color   | 按钮文字的颜色(可选)                                         |
+
+> **e.g.**
+>
+> ```
+> 查看答案
+> {% hideBlock 查看答案 %}
+> 傻子，怎么可能有答案
+> {% endhideBlock %}
+> ```
+>
+> 查看答案
+> {% hideBlock 查看答案 %}
+> 傻子，怎么可能有答案
+> {% endhideBlock %}
+
+## Toggle
+
+如果你需要展示的内容太多，可以把它隐藏在收缩框里，需要时再把它展开
+
+```
+{% hideToggle display,bg,color %}
+content
+{% endhideToggle %}
+```
+
+**display 不能包含英文逗号，可用`&sbquo`**
+
+> **e.g.**
+>
+> ```
+> {% hideToggle Butterfly安装方法 %}
+> 在你的博客根目录里
+> 
+> git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+> 
+> 如果想要安装比较新的dev分支，可以
+> 
+> git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+> 
+> {% endhideToggle %}
+> ```
+>
+> {% hideToggle Butterfly安装方法 %}
+> 在你的博客根目录里
+>
+> git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+>
+> 如果想要安装比较新的dev分支，可以
+>
+> git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+>
+> {% endhideToggle %}
+
