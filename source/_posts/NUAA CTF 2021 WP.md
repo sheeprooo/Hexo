@@ -1,6 +1,7 @@
 ---
 title: NUAA CTF 2021 Web Write up
 date: 2021-04-10 20:23:04
+updated: 2021-04-10 20:24:00
 categories:	CTF
 tags: 
   - CTF

@@ -1,6 +1,7 @@
 ---
 title: Kali学习记录
 date: 2021-04-03
+updated: 2021-04-03
 categories:	学习
 tags:	
   - CTF
