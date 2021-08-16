@@ -310,7 +310,7 @@ f12查看源码发现一串注释的字符，丢到**hasher**里解码，在**ba
 
 #### misc2
 
-> [十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)
+> [十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)
 
 一个**txt**文件 打开之后是乱码，使用winhex查看16进制文件头发现是`.png`格式，修改后缀名打开即可得到flag
 
@@ -320,7 +320,7 @@ f12查看源码发现一串注释的字符，丢到**hasher**里解码，在**ba
 
 #### misc4
 
-一共六个txt文件，使用winhex查看文件头，通过对照[十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)中的信息，将其分别修改为`.jpg`，`.png`，` `
+一共六个txt文件，使用winhex查看文件头，通过对照[十六进制文件头](https://sheeprooo.top/2021/05/27/CTF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)中的信息，将其分别修改为`.jpg`，`.png`，` `
 
 ### 图片篇（信息附加）
 
